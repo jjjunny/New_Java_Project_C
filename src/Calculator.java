@@ -7,13 +7,11 @@ import java.awt.*;
  * 이후에 책 이외에 참고한다면 @see로 출처 표기하겠음
  */
 
-
 public class Calculator extends JFrame {
 
     JTextField t1;
     JTextArea area;
     JButton AC, C, per, devide, seven, eight, nine, multiply, four, five, six, minus, one, two, three, plus, plmi, zero, dot, equal;
-    JComboBox cb;
 
     Calculator() {
         setTitle("Calculator");
@@ -25,6 +23,7 @@ public class Calculator extends JFrame {
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(250,520);
+        setSize(230,400);
         setVisible(true);
     }
 
@@ -33,15 +32,20 @@ public class Calculator extends JFrame {
 
         area = new JTextArea();
         area.setEditable(true);
+        area = new JTextArea(3,21);
+        area.setEditable(false);
+        area.setForeground(Color.BLACK);
 
         panel.add(area);
 
         add(panel, BorderLayout.CENTER);
+        add(panel, BorderLayout.NORTH);
     }
 
     void showCenter() {
 
         JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        panel.setLayout(new GridLayout(6,5));
 
         AC = new JButton("AC");
         C = new JButton("C");
@@ -84,6 +88,7 @@ public class Calculator extends JFrame {
         panel.add(dot);
         panel.add(equal);
 
+        add(panel, BorderLayout.SOUTH);
         add(panel, BorderLayout.CENTER);
 
     }
