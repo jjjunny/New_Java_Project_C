@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 /**
  * 2024.10.17에 최초 생성(Kim Hyeongjun)
  * 2024.10.17에 최초 생성이지만 2024.10.27에 브랜치를 잘못 건드려서 2024.10.27에 새로 생성
@@ -9,45 +10,40 @@ import java.awt.*;
 
 public class Calculator extends JFrame {
 
-    JTextField t1;
     JTextArea area;
     JButton AC, C, per, devide, seven, eight, nine, multiply, four, five, six, minus, one, two, three, plus, plmi, zero, dot, equal;
 
     Calculator() {
         setTitle("Calculator");
 
-        setLayout(new BorderLayout(10,10));
+        setLayout(new BorderLayout(0,0)); //BorderLayout을 10,10으로 지정
         showNorth();
         showCenter();
 
-
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(250,520);
-        setSize(230,400);
+        setSize(230,400); //프레임의 사이즈를 230, 400으로 조정
         setVisible(true);
     }
 
     void showNorth() {
         JPanel panel = new JPanel();
 
-        area = new JTextArea();
-        area.setEditable(true);
-        area = new JTextArea(3,21);
+
+        area = new JTextArea(3,21); //TextArea를 3열 23행으로 지정
         area.setEditable(false);
-        area.setForeground(Color.BLACK);
+        area.setForeground(Color.BLACK); //TextArea의 글자색을 검정색으로 변경
 
         panel.add(area);
 
-        add(panel, BorderLayout.CENTER);
         add(panel, BorderLayout.NORTH);
     }
 
     void showCenter() {
 
         JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        panel.setLayout(new GridLayout(6,5));
+        panel.setLayout(new GridLayout(5, 4)); //GridLayout을 5열 4행으로 지정
 
-        AC = new JButton("AC");
+        AC = new JButton("AC");     //버튼들의 글자를 지정
         C = new JButton("C");
         per = new JButton("%");
         devide = new JButton("/");
@@ -88,10 +84,11 @@ public class Calculator extends JFrame {
         panel.add(dot);
         panel.add(equal);
 
-        add(panel, BorderLayout.SOUTH);
         add(panel, BorderLayout.CENTER);
 
     }
+
+
     public static void main(String[] args) {
         new Calculator();
     }
