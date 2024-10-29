@@ -16,6 +16,8 @@ public class Calculator extends JFrame implements ActionListener {
     JButton[] numberButtons; // 숫자 버튼 배열
     JButton AC, C, per, devide, multiply, minus, plus, plmi, dot, equal; // 연산 및 기능 버튼들
 
+    private double num1 = 0, num2 = 0, result = 0; // 계산에 사용될 변수들
+    private char operator;
     // 생성자
     Calculator() {
         setTitle("Calculator"); // 프레임 제목 설정
@@ -101,6 +103,73 @@ public class Calculator extends JFrame implements ActionListener {
     // 클릭된 버튼의 텍스트 가져오기 @see ChatGPT
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();
+
+        if (command.matches("[0-9]")) { // 숫자 버튼 클릭 시 @see ChatGPT
+            area.append(command);
+        } else {
+            switch (command) {
+                case "AC": // 모든 내용 지우기 @see ChatGPT
+                    area.setText("");
+                    num1 = num2 = result = 0;
+                    break;
+                case "C": // 마지막 입력 지우기 @see ChatGPT
+                    String currentText = area.getText();
+                    if (!currentText.isEmpty()) {
+                        area.setText(currentText.substring(0, currentText.length() - 1));
+                    }
+                    break;
+                case "+/-": // 부호 변경 @see ChatGPT
+                    if (!area.getText().isEmpty()) {
+                        double number = Double.parseDouble(area.getText());
+                        area.setText(String.valueOf(-number));
+                    }
+                    break;
+                case "+":
+                case "-":
+                case "*":
+                case "/":
+                case "%": // 연산자 입력 시 @see ChatGPT
+                    if (!area.getText().isEmpty()) {
+                        num1 = Double.parseDouble(area.getText());
+                        operator = command.charAt(0);
+                        area.setText("");
+                    }
+                    break;
+                case "=": // 계산 수행 @see ChatGPT
+                    if (!area.getText().isEmpty()) {
+                        num2 = Double.parseDouble(area.getText());
+                        switch (operator) {
+                            case '+':
+                                result = num1 + num2;
+                                break;
+                            case '-':
+                                result = num1 - num2;
+                                break;
+                            case '*':
+                                result = num1 * num2;
+                                break;
+                            case '/':
+                                if (num2 != 0) {
+                                    result = num1 / num2;
+                                } else {
+                                    area.setText("Error"); // 0으로 나누기 오류 @see ChatGPT
+                                    return;
+                                }
+                                break;
+                            case '%':
+                                result = num1 % num2;
+                                break;
+                        }
+                        area.setText(String.valueOf(result));
+                    }
+                    break;
+                case ".": // 소수점 추가 @see ChatGPT
+                    if (!area.getText().contains(".")) {
+                        area.append(".");
+                    }
+                    break;
+            }
+        }
     }
 
     // 메인 메소드
