@@ -1,5 +1,5 @@
 My Calculator
-2024.10.17에 최초 생성(Kim Hyeongjun)
+2024.10.17에 최초 생성(Kim Hyeongjun) src파일에 있는 Calculator클래스 말고 파일 들어가기 전 Calculator클래스로 들어가기
 
 2024.10.17에 생성하여 커밋을 올렸지만 브랜치를 잘못 건드려서 다시 생성 후 커밋
 원래 올렸던 날짜를 ()에 넣음
